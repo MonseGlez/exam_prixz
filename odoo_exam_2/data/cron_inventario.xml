@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_stock_picking_compute_total_incoming" model="ir.cron">
+        <field name="name">cantidad acumulada de lo reservado</field>
+        <field name="model_id" ref="model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">model.sumar_demandas()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field eval="True" name="active"/>
+    </record>
+</odoo>

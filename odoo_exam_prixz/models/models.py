@@ -13,15 +13,13 @@ class odoo_exam_prixz(models.Model):
 
     @api.onchange('partner_id')
     def _onchange_rfc(self):
-        for rec in self:
-            if not rec.partner_id.vat :
-                rec.rfc = 'XAXX010101000'
-                print('No se tiene el rfc del cliente')    
-            rec.rfc = rec.partner_id.vat
-            print('se tiene el rfc del cliente')    
-
+        
+        if self.partner_id.vat:
+            self.rfc = self.partner_id.vat 
+        else: 
+            self.rfc= 'XAXX010101000'
+       
       
     def consumo_api(self):
-        r = requests.post('https://fakestoreapi.com/products')
-        
-        print(r.response)
+        r = requests.get('https://fakestoreapi.com/products')        
+        print(r.text)
